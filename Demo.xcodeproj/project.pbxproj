@@ -108,8 +108,8 @@
 		9F6801F81DBF5252005D9CCB = {
 			isa = PBXGroup;
 			children = (
-				9F6802041DBF5252005D9CCB /* Terpentin */,
-				9F68020F1DBF5252005D9CCB /* TerpentinTests */,
+				9F6802041DBF5252005D9CCB /* Source */,
+				9F68020F1DBF5252005D9CCB /* Tests */,
 				9F6802211DBF5276005D9CCB /* Demo */,
 				9F6802031DBF5252005D9CCB /* Products */,
 			);
@@ -125,7 +125,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9F6802041DBF5252005D9CCB /* Terpentin */ = {
+		9F6802041DBF5252005D9CCB /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				9F6802321DBF54C2005D9CCB /* reader.js */,
@@ -134,16 +134,16 @@
 				9F6802351DBF54EA005D9CCB /* Terpentin.swift */,
 				9F7772971DBF64C4001A6A03 /* ReadableArticle.swift */,
 			);
-			path = Terpentin;
+			path = Source;
 			sourceTree = "<group>";
 		};
-		9F68020F1DBF5252005D9CCB /* TerpentinTests */ = {
+		9F68020F1DBF5252005D9CCB /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				9F6802101DBF5252005D9CCB /* TerpentinTests.swift */,
 				9F6802121DBF5252005D9CCB /* Info.plist */,
 			);
-			path = TerpentinTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		9F6802211DBF5276005D9CCB /* Demo */ = {
@@ -258,7 +258,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9F6801FC1DBF5252005D9CCB /* Build configuration list for PBXProject "Terpentin" */;
+			buildConfigurationList = 9F6801FC1DBF5252005D9CCB /* Build configuration list for PBXProject "Demo" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -564,7 +564,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9F6801FC1DBF5252005D9CCB /* Build configuration list for PBXProject "Terpentin" */ = {
+		9F6801FC1DBF5252005D9CCB /* Build configuration list for PBXProject "Demo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9F6802141DBF5252005D9CCB /* Debug */,
