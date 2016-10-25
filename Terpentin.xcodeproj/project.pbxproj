@@ -59,10 +59,10 @@
 		9F6802021DBF5252005D9CCB /* Terpentin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Terpentin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F6802051DBF5252005D9CCB /* Terpentin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Terpentin.h; sourceTree = "<group>"; };
 		9F6802061DBF5252005D9CCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9F68020B1DBF5252005D9CCB /* TerpentinTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TerpentinTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F68020B1DBF5252005D9CCB /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F6802101DBF5252005D9CCB /* TerpentinTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerpentinTests.swift; sourceTree = "<group>"; };
 		9F6802121DBF5252005D9CCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9F6802201DBF5276005D9CCB /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F6802201DBF5276005D9CCB /* iOSDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F6802221DBF5276005D9CCB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F6802241DBF5276005D9CCB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9F6802291DBF5276005D9CCB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -119,8 +119,8 @@
 			isa = PBXGroup;
 			children = (
 				9F6802021DBF5252005D9CCB /* Terpentin.framework */,
-				9F68020B1DBF5252005D9CCB /* TerpentinTests.xctest */,
-				9F6802201DBF5276005D9CCB /* Demo.app */,
+				9F68020B1DBF5252005D9CCB /* Tests.xctest */,
+				9F6802201DBF5276005D9CCB /* iOSDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -194,9 +194,9 @@
 			productReference = 9F6802021DBF5252005D9CCB /* Terpentin.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		9F68020A1DBF5252005D9CCB /* TerpentinTests */ = {
+		9F68020A1DBF5252005D9CCB /* Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9F6802191DBF5252005D9CCB /* Build configuration list for PBXNativeTarget "TerpentinTests" */;
+			buildConfigurationList = 9F6802191DBF5252005D9CCB /* Build configuration list for PBXNativeTarget "Tests" */;
 			buildPhases = (
 				9F6802071DBF5252005D9CCB /* Sources */,
 				9F6802081DBF5252005D9CCB /* Frameworks */,
@@ -207,14 +207,14 @@
 			dependencies = (
 				9F68020E1DBF5252005D9CCB /* PBXTargetDependency */,
 			);
-			name = TerpentinTests;
+			name = Tests;
 			productName = TerpentinTests;
-			productReference = 9F68020B1DBF5252005D9CCB /* TerpentinTests.xctest */;
+			productReference = 9F68020B1DBF5252005D9CCB /* Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		9F68021F1DBF5276005D9CCB /* Demo */ = {
+		9F68021F1DBF5276005D9CCB /* iOSDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9F68022F1DBF5276005D9CCB /* Build configuration list for PBXNativeTarget "Demo" */;
+			buildConfigurationList = 9F68022F1DBF5276005D9CCB /* Build configuration list for PBXNativeTarget "iOSDemo" */;
 			buildPhases = (
 				9F68021C1DBF5276005D9CCB /* Sources */,
 				9F68021D1DBF5276005D9CCB /* Frameworks */,
@@ -225,9 +225,9 @@
 			);
 			dependencies = (
 			);
-			name = Demo;
+			name = iOSDemo;
 			productName = Demo;
-			productReference = 9F6802201DBF5276005D9CCB /* Demo.app */;
+			productReference = 9F6802201DBF5276005D9CCB /* iOSDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -258,7 +258,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9F6801FC1DBF5252005D9CCB /* Build configuration list for PBXProject "Demo" */;
+			buildConfigurationList = 9F6801FC1DBF5252005D9CCB /* Build configuration list for PBXProject "Terpentin" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -272,8 +272,8 @@
 			projectRoot = "";
 			targets = (
 				9F6802011DBF5252005D9CCB /* Terpentin */,
-				9F68020A1DBF5252005D9CCB /* TerpentinTests */,
-				9F68021F1DBF5276005D9CCB /* Demo */,
+				9F68020A1DBF5252005D9CCB /* Tests */,
+				9F68021F1DBF5276005D9CCB /* iOSDemo */,
 			);
 		};
 /* End PBXProject section */
@@ -470,7 +470,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Terpentin/Info.plist;
+				INFOPLIST_FILE = Source/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = no.bakkenbaeck.Terpentin;
@@ -491,7 +491,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Terpentin/Info.plist;
+				INFOPLIST_FILE = Source/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = no.bakkenbaeck.Terpentin;
@@ -506,7 +506,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 29X3GG489T;
-				INFOPLIST_FILE = TerpentinTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = no.bakkenbaeck.TerpentinTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -519,7 +519,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 29X3GG489T;
-				INFOPLIST_FILE = TerpentinTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = no.bakkenbaeck.TerpentinTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -564,7 +564,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9F6801FC1DBF5252005D9CCB /* Build configuration list for PBXProject "Demo" */ = {
+		9F6801FC1DBF5252005D9CCB /* Build configuration list for PBXProject "Terpentin" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9F6802141DBF5252005D9CCB /* Debug */,
@@ -582,7 +582,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9F6802191DBF5252005D9CCB /* Build configuration list for PBXNativeTarget "TerpentinTests" */ = {
+		9F6802191DBF5252005D9CCB /* Build configuration list for PBXNativeTarget "Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9F68021A1DBF5252005D9CCB /* Debug */,
@@ -591,7 +591,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9F68022F1DBF5276005D9CCB /* Build configuration list for PBXNativeTarget "Demo" */ = {
+		9F68022F1DBF5276005D9CCB /* Build configuration list for PBXNativeTarget "iOSDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9F6802301DBF5276005D9CCB /* Debug */,

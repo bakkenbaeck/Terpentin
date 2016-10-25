@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Terpentin.xcodeproj">
+      location = "self:/Users/elland/Documents/bb/Terpentin/Terpentin.xcodeproj">
    </FileRef>
 </Workspace>
