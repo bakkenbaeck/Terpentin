@@ -70,7 +70,7 @@
 		9F68022E1DBF5276005D9CCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F6802321DBF54C2005D9CCB /* reader.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = reader.js; sourceTree = "<group>"; };
 		9F6802351DBF54EA005D9CCB /* Terpentin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Terpentin.swift; sourceTree = "<group>"; };
-		9F6802381DBF5512005D9CCB /* Test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Test.html; path = ../Terpentin/Test.html; sourceTree = "<group>"; };
+		9F6802381DBF5512005D9CCB /* Test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Test.html; sourceTree = "<group>"; };
 		9F77728E1DBF571D001A6A03 /* SweetUIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SweetUIKit.framework; sourceTree = "<group>"; };
 		9F77728F1DBF571D001A6A03 /* SweetUIKit.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = SweetUIKit.framework.dSYM; sourceTree = "<group>"; };
 		9F7772971DBF64C4001A6A03 /* ReadableArticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadableArticle.swift; sourceTree = "<group>"; };
