@@ -6,6 +6,8 @@ open class Terpentin: NSObject {
 
     var html: String!
 
+    fileprivate var isParsingFromURL = false
+
     fileprivate var completion: ((_ article: ReadableArticle?) -> ())?
 
     lazy var webView: UIWebView = {
@@ -17,7 +19,6 @@ open class Terpentin: NSObject {
 
     lazy var context: JSContext = {
         guard let context = self.webView.value(forKeyPath: "documentView.webView.mainFrame.javaScriptContext") as? JSContext else { fatalError("Could not get JSContext from web view.") }
-        context.evaluateScript(self.readerSource)
 
         return context
     }()
@@ -27,27 +28,39 @@ open class Terpentin: NSObject {
     }()
 
     public func parse(html: String, baseURL: URL, completion: @escaping((_ article: ReadableArticle?) -> ())) {
+        self.isParsingFromURL = false
         self.html = html
         self.completion = completion
         self.webView.loadHTMLString(html, baseURL: baseURL)
+    }
+
+    public func parse(url: URL, completion: @escaping((_ article: ReadableArticle?) -> ())) {
+        self.isParsingFromURL = true
+        self.completion = completion
+        let request = URLRequest(url: url)
+        self.webView.loadRequest(request)
     }
 }
 
 extension Terpentin: UIWebViewDelegate {
     public func webViewDidFinishLoad(_ webView: UIWebView) {
-        context.evaluateScript("var ReaderArticleFinderJS = new ReaderArticleFinder(document)")
+        if self.isParsingFromURL {
+            self.html = webView.stringByEvaluatingJavaScript(from: "document.documentElement.outerHTML")
+        }
 
+        context.evaluateScript(self.readerSource)
+        context.evaluateScript("var ReaderArticleFinderJS = new ReaderArticleFinder(document);")
         context.evaluateScript("ReaderArticleFinderJS.prepareToTransitionToReader();")
 
-        let isReaderModeAvailable = context.evaluateScript("ReaderArticleFinderJS.isReaderModeAvailable()").toBool()
-        let nextPageURL = URL(string: context.evaluateScript("ReaderArticleFinderJS.nextPageURL()").toString())
-        let isLTR = context.evaluateScript("ReaderArticleFinderJS.articleIsLTR()").toBool()
-        let isWiki = context.evaluateScript("ReaderArticleFinderJS.isMediaWikiPage()").toBool()
-        let isWordpress = context.evaluateScript("ReaderArticleFinderJS.isWordPressSite()").toBool()
+        let isReaderModeAvailable = context.evaluateScript("ReaderArticleFinderJS.isReaderModeAvailable();").toBool()
+        let nextPageURL = URL(string: context.evaluateScript("ReaderArticleFinderJS.nextPageURL();").toString())
+        let isLTR = context.evaluateScript("ReaderArticleFinderJS.articleIsLTR();").toBool()
+        let isWiki = context.evaluateScript("ReaderArticleFinderJS.isMediaWikiPage();").toBool()
+        let isWordpress = context.evaluateScript("ReaderArticleFinderJS.isWordPressSite();").toBool()
 
-        let title = context.evaluateScript("ReaderArticleFinderJS.articleTitle()").toString()
-        let content = context.evaluateScript("ReaderArticleFinderJS.articleNode().outerHTML").toString()
-        let plainText = context.evaluateScript("ReaderArticleFinderJS.articleTextContent()").toString()
+        let title = context.evaluateScript("ReaderArticleFinderJS.articleTitle();").toString()
+        let content = context.evaluateScript("ReaderArticleFinderJS.articleNode().outerHTML;").toString()
+        let plainText = context.evaluateScript("ReaderArticleFinderJS.articleTextContent();").toString()
 
         let article = ReadableArticle(title: title, content: content!, rawContent: self.html, isReaderModeAvailable: isReaderModeAvailable, nextPageURL: nextPageURL, isLTR: isLTR, isMediaWiki: isWiki, isWordpress: isWordpress)
 

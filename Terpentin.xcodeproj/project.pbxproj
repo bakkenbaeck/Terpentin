@@ -14,7 +14,6 @@
 		9F6802251DBF5276005D9CCB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6802241DBF5276005D9CCB /* ViewController.swift */; };
 		9F68022A1DBF5276005D9CCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F6802291DBF5276005D9CCB /* Assets.xcassets */; };
 		9F68022D1DBF5276005D9CCB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F68022B1DBF5276005D9CCB /* LaunchScreen.storyboard */; };
-		9F6802331DBF54C2005D9CCB /* reader.js in Resources */ = {isa = PBXBuildFile; fileRef = 9F6802321DBF54C2005D9CCB /* reader.js */; };
 		9F6802341DBF54C2005D9CCB /* reader.js in Resources */ = {isa = PBXBuildFile; fileRef = 9F6802321DBF54C2005D9CCB /* reader.js */; };
 		9F6802361DBF54EA005D9CCB /* Terpentin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6802351DBF54EA005D9CCB /* Terpentin.swift */; };
 		9F6802371DBF54EA005D9CCB /* Terpentin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6802351DBF54EA005D9CCB /* Terpentin.swift */; };
@@ -28,6 +27,7 @@
 		9F7772981DBF64C4001A6A03 /* ReadableArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7772971DBF64C4001A6A03 /* ReadableArticle.swift */; };
 		9F7772991DBF64C4001A6A03 /* ReadableArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7772971DBF64C4001A6A03 /* ReadableArticle.swift */; };
 		9F77729B1DBF697D001A6A03 /* Test.css in Resources */ = {isa = PBXBuildFile; fileRef = 9F77729A1DBF697D001A6A03 /* Test.css */; };
+		9FBA0C721DBFAC290007D239 /* reader.js in Resources */ = {isa = PBXBuildFile; fileRef = 9F6802321DBF54C2005D9CCB /* reader.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -283,7 +283,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F6802331DBF54C2005D9CCB /* reader.js in Resources */,
+				9FBA0C721DBFAC290007D239 /* reader.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

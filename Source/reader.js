@@ -1,7 +1,6 @@
 /*
  * Copyright © 2010 Apple Inc. All rights reserved.
  */
-
 const ReaderMinimumScore = 1600;
 const ReaderMinimumAdvantage = 15;
 const ArticleMinimumScoreDensity = 4.25;
