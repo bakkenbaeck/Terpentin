@@ -10,6 +10,24 @@
 		9F68020C1DBF5252005D9CCB /* Terpentin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6802021DBF5252005D9CCB /* Terpentin.framework */; };
 		9F6802111DBF5252005D9CCB /* TerpentinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6802101DBF5252005D9CCB /* TerpentinTests.swift */; };
 		9F6802131DBF5252005D9CCB /* Terpentin.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F6802051DBF5252005D9CCB /* Terpentin.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9F6802231DBF5276005D9CCB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6802221DBF5276005D9CCB /* AppDelegate.swift */; };
+		9F6802251DBF5276005D9CCB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6802241DBF5276005D9CCB /* ViewController.swift */; };
+		9F68022A1DBF5276005D9CCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F6802291DBF5276005D9CCB /* Assets.xcassets */; };
+		9F68022D1DBF5276005D9CCB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F68022B1DBF5276005D9CCB /* LaunchScreen.storyboard */; };
+		9F6802331DBF54C2005D9CCB /* reader.js in Resources */ = {isa = PBXBuildFile; fileRef = 9F6802321DBF54C2005D9CCB /* reader.js */; };
+		9F6802341DBF54C2005D9CCB /* reader.js in Resources */ = {isa = PBXBuildFile; fileRef = 9F6802321DBF54C2005D9CCB /* reader.js */; };
+		9F6802361DBF54EA005D9CCB /* Terpentin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6802351DBF54EA005D9CCB /* Terpentin.swift */; };
+		9F6802371DBF54EA005D9CCB /* Terpentin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6802351DBF54EA005D9CCB /* Terpentin.swift */; };
+		9F68023A1DBF5512005D9CCB /* Test.html in Resources */ = {isa = PBXBuildFile; fileRef = 9F6802381DBF5512005D9CCB /* Test.html */; };
+		9F7772901DBF571D001A6A03 /* SweetUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F77728E1DBF571D001A6A03 /* SweetUIKit.framework */; };
+		9F7772911DBF571D001A6A03 /* SweetUIKit.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 9F77728F1DBF571D001A6A03 /* SweetUIKit.framework.dSYM */; };
+		9F7772921DBF57AD001A6A03 /* Terpentin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6802021DBF5252005D9CCB /* Terpentin.framework */; };
+		9F7772941DBF57BD001A6A03 /* Terpentin.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6802021DBF5252005D9CCB /* Terpentin.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9F7772951DBF5828001A6A03 /* SweetUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9F77728E1DBF571D001A6A03 /* SweetUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9F7772961DBF607F001A6A03 /* Test.html in Resources */ = {isa = PBXBuildFile; fileRef = 9F6802381DBF5512005D9CCB /* Test.html */; };
+		9F7772981DBF64C4001A6A03 /* ReadableArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7772971DBF64C4001A6A03 /* ReadableArticle.swift */; };
+		9F7772991DBF64C4001A6A03 /* ReadableArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7772971DBF64C4001A6A03 /* ReadableArticle.swift */; };
+		9F77729B1DBF697D001A6A03 /* Test.css in Resources */ = {isa = PBXBuildFile; fileRef = 9F77729A1DBF697D001A6A03 /* Test.css */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -22,6 +40,21 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		9F7772931DBF57B1001A6A03 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9F7772941DBF57BD001A6A03 /* Terpentin.framework in Embed Frameworks */,
+				9F7772951DBF5828001A6A03 /* SweetUIKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		9F6802021DBF5252005D9CCB /* Terpentin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Terpentin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F6802051DBF5252005D9CCB /* Terpentin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Terpentin.h; sourceTree = "<group>"; };
@@ -29,6 +62,19 @@
 		9F68020B1DBF5252005D9CCB /* TerpentinTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TerpentinTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F6802101DBF5252005D9CCB /* TerpentinTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerpentinTests.swift; sourceTree = "<group>"; };
 		9F6802121DBF5252005D9CCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F6802201DBF5276005D9CCB /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F6802221DBF5276005D9CCB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9F6802241DBF5276005D9CCB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9F6802291DBF5276005D9CCB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9F68022C1DBF5276005D9CCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9F68022E1DBF5276005D9CCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F6802321DBF54C2005D9CCB /* reader.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = reader.js; sourceTree = "<group>"; };
+		9F6802351DBF54EA005D9CCB /* Terpentin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Terpentin.swift; sourceTree = "<group>"; };
+		9F6802381DBF5512005D9CCB /* Test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Test.html; path = ../Terpentin/Test.html; sourceTree = "<group>"; };
+		9F77728E1DBF571D001A6A03 /* SweetUIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SweetUIKit.framework; sourceTree = "<group>"; };
+		9F77728F1DBF571D001A6A03 /* SweetUIKit.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = SweetUIKit.framework.dSYM; sourceTree = "<group>"; };
+		9F7772971DBF64C4001A6A03 /* ReadableArticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadableArticle.swift; sourceTree = "<group>"; };
+		9F77729A1DBF697D001A6A03 /* Test.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = Test.css; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +93,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9F68021D1DBF5276005D9CCB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F7772901DBF571D001A6A03 /* SweetUIKit.framework in Frameworks */,
+				9F7772921DBF57AD001A6A03 /* Terpentin.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -55,6 +110,7 @@
 			children = (
 				9F6802041DBF5252005D9CCB /* Terpentin */,
 				9F68020F1DBF5252005D9CCB /* TerpentinTests */,
+				9F6802211DBF5276005D9CCB /* Demo */,
 				9F6802031DBF5252005D9CCB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -64,6 +120,7 @@
 			children = (
 				9F6802021DBF5252005D9CCB /* Terpentin.framework */,
 				9F68020B1DBF5252005D9CCB /* TerpentinTests.xctest */,
+				9F6802201DBF5276005D9CCB /* Demo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -71,8 +128,11 @@
 		9F6802041DBF5252005D9CCB /* Terpentin */ = {
 			isa = PBXGroup;
 			children = (
+				9F6802321DBF54C2005D9CCB /* reader.js */,
 				9F6802051DBF5252005D9CCB /* Terpentin.h */,
 				9F6802061DBF5252005D9CCB /* Info.plist */,
+				9F6802351DBF54EA005D9CCB /* Terpentin.swift */,
+				9F7772971DBF64C4001A6A03 /* ReadableArticle.swift */,
 			);
 			path = Terpentin;
 			sourceTree = "<group>";
@@ -84,6 +144,22 @@
 				9F6802121DBF5252005D9CCB /* Info.plist */,
 			);
 			path = TerpentinTests;
+			sourceTree = "<group>";
+		};
+		9F6802211DBF5276005D9CCB /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				9F6802381DBF5512005D9CCB /* Test.html */,
+				9F77729A1DBF697D001A6A03 /* Test.css */,
+				9F6802221DBF5276005D9CCB /* AppDelegate.swift */,
+				9F6802241DBF5276005D9CCB /* ViewController.swift */,
+				9F6802291DBF5276005D9CCB /* Assets.xcassets */,
+				9F68022B1DBF5276005D9CCB /* LaunchScreen.storyboard */,
+				9F68022E1DBF5276005D9CCB /* Info.plist */,
+				9F77728E1DBF571D001A6A03 /* SweetUIKit.framework */,
+				9F77728F1DBF571D001A6A03 /* SweetUIKit.framework.dSYM */,
+			);
+			path = Demo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,6 +212,24 @@
 			productReference = 9F68020B1DBF5252005D9CCB /* TerpentinTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		9F68021F1DBF5276005D9CCB /* Demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9F68022F1DBF5276005D9CCB /* Build configuration list for PBXNativeTarget "Demo" */;
+			buildPhases = (
+				9F68021C1DBF5276005D9CCB /* Sources */,
+				9F68021D1DBF5276005D9CCB /* Frameworks */,
+				9F68021E1DBF5276005D9CCB /* Resources */,
+				9F7772931DBF57B1001A6A03 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Demo;
+			productName = Demo;
+			productReference = 9F6802201DBF5276005D9CCB /* Demo.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -149,9 +243,15 @@
 					9F6802011DBF5252005D9CCB = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 29X3GG489T;
+						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 					};
 					9F68020A1DBF5252005D9CCB = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 29X3GG489T;
+						ProvisioningStyle = Automatic;
+					};
+					9F68021F1DBF5276005D9CCB = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 29X3GG489T;
 						ProvisioningStyle = Automatic;
@@ -164,6 +264,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 9F6801F81DBF5252005D9CCB;
 			productRefGroup = 9F6802031DBF5252005D9CCB /* Products */;
@@ -172,6 +273,7 @@
 			targets = (
 				9F6802011DBF5252005D9CCB /* Terpentin */,
 				9F68020A1DBF5252005D9CCB /* TerpentinTests */,
+				9F68021F1DBF5276005D9CCB /* Demo */,
 			);
 		};
 /* End PBXProject section */
@@ -181,6 +283,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F6802331DBF54C2005D9CCB /* reader.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,6 +291,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F68023A1DBF5512005D9CCB /* Test.html in Resources */,
+				9F6802341DBF54C2005D9CCB /* reader.js in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F68021E1DBF5276005D9CCB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F68022D1DBF5276005D9CCB /* LaunchScreen.storyboard in Resources */,
+				9F7772911DBF571D001A6A03 /* SweetUIKit.framework.dSYM in Resources */,
+				9F77729B1DBF697D001A6A03 /* Test.css in Resources */,
+				9F7772961DBF607F001A6A03 /* Test.html in Resources */,
+				9F68022A1DBF5276005D9CCB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +315,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F7772981DBF64C4001A6A03 /* ReadableArticle.swift in Sources */,
+				9F6802361DBF54EA005D9CCB /* Terpentin.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,7 +324,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F7772991DBF64C4001A6A03 /* ReadableArticle.swift in Sources */,
 				9F6802111DBF5252005D9CCB /* TerpentinTests.swift in Sources */,
+				9F6802371DBF54EA005D9CCB /* Terpentin.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F68021C1DBF5276005D9CCB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F6802251DBF5276005D9CCB /* ViewController.swift in Sources */,
+				9F6802231DBF5276005D9CCB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,6 +348,17 @@
 			targetProxy = 9F68020D1DBF5252005D9CCB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9F68022B1DBF5276005D9CCB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9F68022C1DBF5276005D9CCB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		9F6802141DBF5252005D9CCB /* Debug */ = {
@@ -322,6 +463,7 @@
 		9F6802171DBF5252005D9CCB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 29X3GG489T;
@@ -334,6 +476,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = no.bakkenbaeck.Terpentin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -341,6 +484,7 @@
 		9F6802181DBF5252005D9CCB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 29X3GG489T;
@@ -360,6 +504,7 @@
 		9F68021A1DBF5252005D9CCB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 29X3GG489T;
 				INFOPLIST_FILE = TerpentinTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -372,10 +517,45 @@
 		9F68021B1DBF5252005D9CCB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 29X3GG489T;
 				INFOPLIST_FILE = TerpentinTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = no.bakkenbaeck.TerpentinTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		9F6802301DBF5276005D9CCB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 29X3GG489T;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Demo",
+				);
+				INFOPLIST_FILE = Demo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = no.bakkenbaeck.Demo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		9F6802311DBF5276005D9CCB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 29X3GG489T;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Demo",
+				);
+				INFOPLIST_FILE = Demo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = no.bakkenbaeck.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -400,6 +580,7 @@
 				9F6802181DBF5252005D9CCB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9F6802191DBF5252005D9CCB /* Build configuration list for PBXNativeTarget "TerpentinTests" */ = {
 			isa = XCConfigurationList;
@@ -408,6 +589,16 @@
 				9F68021B1DBF5252005D9CCB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9F68022F1DBF5276005D9CCB /* Build configuration list for PBXNativeTarget "Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F6802301DBF5276005D9CCB /* Debug */,
+				9F6802311DBF5276005D9CCB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

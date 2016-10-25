@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Optional Non-Escaping Closures – Ole Begemann</title>
+  <link href="/stylesheets/stylesheet-3f196aba.css" rel="stylesheet" />
+  <link rel="alternate" type="application/atom+xml" href="/blog/atom.xml">
+  <link rel="index" title="Ole Begemann" href="/">
+  <meta name="description" content="Closures are generally non-escaping by default since Swift 3, but there are still some situations where that’s not the case." />
+  <meta name="referrer" content="always">
+  <script src="/js/jquery-2.2.4/jquery.min-69bb69e2.js"></script>
+  <script src="/js/bigfoot-2.1.4/bigfoot.min-d33e8719.js"></script>
+  <script type="text/javascript">
+  var bigfoot = $.bigfoot(
+    {
+      positionContent: true,
+      actionOriginalFN: "ignore",
+      numberResetSelector: ".article-content",
+    });
+    </script>
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-316742-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+  </head>
+
+
+  <body class="article">
+    <header>
+      <div class="header-bar">
+        <div class="site-id">
+          <h1><a href="/">Ole Begemann</a></h1>
+        </div>
+
+        <ol class="links">
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li>
+            <a href="/blog/">Articles</a>
+          </li>
+          <li>
+            <a href="/about/">About</a>
+          </li>
+        </ol>
+      </div>
+    </header>
+
+
+    <main class="content-container">
+      <article>
+        <header>
+          <h1>Optional Non-Escaping Closures</h1>
+        </header>
+
+        <footer>
+          <div class="metadata">
+            <p class="author">
+              By Ole Begemann
+              <span class="author-info" style="display: none;"><a href="#fn:_" rel="footnote">…</a></span>
+              <script type="text/javascript">
+              $(".author-info").css("display", "initial");
+              </script>
+            </p>
+            <!-- Contents of author info popover. Should be hidden in CSS -->
+            <ol class="author-footnotes">
+              <li class="footnote" id="fn:_">
+                <p>Twitter: <a href='https://twitter.com/olebegemann'>@olebegemann</a><br>Email: <a href='mailto:ole@oleb.net'>ole@oleb.net</a><br><a href='/about/'>More about me</a></p>
+              </li>
+            </ol>
+
+            <p>
+              <span class="date"><time datetime="2016-10-10T21:28:37Z">October 10, 2016</time></span>
+            </p>
+
+          </div>
+
+        </footer>
+
+        <div class="article-content">
+          <p>Swift differentiates between <em>escaping</em> and <em>non-escaping</em> closures. An <a href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Closures.html">escaping closure</a> is one that is (potentially) called <em>after</em> the function the closure is passed to returns — that is, the closure <em>escapes</em> the scope of the function it is passed to as an argument.</p>
+
+          <p>Escaping closures are often associated with asynchronous control flow, like in the following examples:</p>
+
+          <ul>
+            <li>A function starts a background task and returns immediately, reporting the result of the background task via a completion handler.</li>
+            <li>A view class stores a closure in a property as an event handler for a button tap event. The class calls the closure every time the user taps the button. The closure escapes the property setter.</li>
+            <li>You schedule a task for asynchronous execution on a dispatch queue using <a href="https://developer.apple.com/reference/dispatch/dispatchqueue/2016098-async"><code>DispatchQueue.async</code></a>. The task closure outlives the call to <code>async</code>.</li>
+          </ul>
+
+          <p>Contrast this with <a href="https://developer.apple.com/reference/dispatch/dispatchqueue/2016081-sync"><code>DispatchQueue.sync</code></a>, which waits until the task closure has finished executing before it returns — the closure never escapes. The same is true for <a href="https://developer.apple.com/reference/swift/sequence/1641748-map"><code>map</code></a> and the other common sequence and collection algorithms in the standard library.</p>
+
+          <h1 id="why-is-differentiating-between-escaping-and-non-escaping-closures-important">Why is differentiating between escaping and non-escaping closures important?</h1>
+
+          <p>In short, memory management. A closure keeps a strong reference to every object the closure captures — and that includes <code>self</code> if you access any property or instance method of <code>self</code> inside the closure, because all of these carry an implicit <code>self</code> parameter.</p>
+
+          <p>It’s very easy to accidentally introduce <a href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/AutomaticReferenceCounting.html#//apple_ref/doc/uid/TP40014097-CH20-ID56">reference cycles</a> in this way, which is why the compiler requires you to explicitly refer to <code>self</code> inside closures. This forces you to think about potential reference cycles and manually resolve them <a href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/AutomaticReferenceCounting.html#//apple_ref/doc/uid/TP40014097-CH20-ID56">using capture lists</a>.</p>
+
+          <p>However, it’s impossible to create a reference cycle with a non-escaping closure — the compiler can guarantee that the closure will have released all objects it captured by the time the function returns. For this reason, the compiler only requires explicit references to <code>self</code> for <em>escaping</em> closures. This makes non-escaping closures significantly more pleasant to use.</p>
+
+          <p>Another benefit of non-escaping closures is that the compiler can apply more aggressive performance optimizations. For example, the compiler can omit some retain and release calls when the lifetime of the closure is known. In addition, the memory for a closure’s context can be kept on the stack instead of the heap if the closure is non-escaping — though I don’t know if the Swift compiler currently performs this optimization (an <a href="https://bugs.swift.org/browse/SR-904">open March 2016 bug report</a> suggests that it doesn’t).</p>
+
+          <h1 id="closures-are-non-escaping-by-default-">Closures are non-escaping by default …</h1>
+
+          <p>Beginning in Swift 3, non-escaping closures <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0103-make-noescape-default.md" title="Swift Evolution Proposal SE-0103: Make non-escaping closures the default">are now the default</a>. If you want to allow a closure parameter to escape, you need to add the <code>@escaping</code> annotation to the type. For instance, here are the declarations for <code>DispatchQueue.async</code> (escaping) and <code>DispatchQueue.sync</code> (non-escaping):</p>
+
+          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">DispatchQueue</span> <span class="p">{</span>
+            <span class="o">...</span>
+            <span class="kd">func</span> <span class="nf">async</span><span class="p">(</span><span class="cm">/* other params omitted */</span><span class="p">,</span> <span class="n">execute</span> <span class="nv">work</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span>
+            <span class="kd">func</span> <span class="n">sync</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">execute</span> <span class="nv">work</span><span class="p">:</span> <span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">)</span> <span class="k">rethrows</span> <span class="o">-&gt;</span> <span class="kt">T</span>
+            <span class="p">}</span>
+          </code></pre>
+          <p>Before Swift 3, it was the other way around: escaping was the default, and you’d add <code>@noescape</code> to override. The new behavior is better because it’s safe by default: a function argument now must be explicitly annotated to signal the potential for reference cycles. Thus, the <code>@escaping</code> annotation serves as a warning to the developer using the function.</p>
+
+          <h1 id="but-only-as-immediate-function-parameters">… but only as immediate function parameters</h1>
+
+          <p>There’s a catch to the non-escaping-by-default rule: it only applies to closures in <em>immediate function parameter position</em>, i.e. any function argument that has a function type. All other closures are escaping.</p>
+
+          <h2 id="what-does-immediate-parameter-position-mean">What does immediate parameter position mean?</h2>
+
+          <p>Let’s look at some examples. The simplest case is something like <code>map</code>: a function that takes an immediate closure parameter. As we’ve seen, the closure is non-escaping (I omitted some details from the real signature of <code>map</code> that are not important for this discussion):</p>
+
+          <pre class="highlight swift"><code><span class="kd">func</span> <span class="n">map</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">transform</span><span class="p">:</span> <span class="p">(</span><span class="kt">Iterator</span><span class="o">.</span><span class="kt">Element</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">T</span><span class="p">]</span>
+          </code></pre>
+          <h3 id="variables-of-function-type-are-always-escaping">Variables of function type are always escaping</h3>
+
+          <p>Contrast this with a variable or property that has a function type. It is automatically escaping, even without explicit annotation (in fact, adding an explicit <code>@escaping</code> is an error). This makes sense, because assigning a value to a variable implicitly lets the value escape to the variable’s scope, which shouldn’t be permitted for non-escaping closures. It can be confusing, however, that the a bare, unannotated function type has a different meaning in a parameter list than anywhere else.</p>
+
+          <h3 id="optional-closures-are-always-escaping">Optional closures are always escaping</h3>
+
+          <p>More surprisingly, closures that <em>are</em> used as parameters, but are wrapped in some other type (such as a tuple, an enum case, or an optional), are also escaping. Since the closure is no longer an <em>immediate</em> parameter in this case, it automatically becomes escaping. As a consequence, in Swift 3.0 you can’t write a function that takes a function argument where the parameter is both optional and non-escaping. Consider the following contrived example: the <code>transform</code> function takes an integer <code>n</code> and an optional transformation function <code>f</code>. It returns <code>f(n)</code>, or <code>n</code> if <code>f</code> is <code>nil</code>:</p>
+
+          <pre class="highlight swift"><code><span class="c1">/// Applies `f` to `n` and returns the result.</span>
+            <span class="c1">/// Returns `n` unchanged if `f` is nil.</span>
+            <span class="kd">func</span> <span class="nf">transform</span><span class="p">(</span><span class="n">_</span> <span class="nv">n</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">with</span> <span class="nv">f</span><span class="p">:</span> <span class="p">((</span><span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span><span class="p">)?)</span> <span class="o">-&gt;</span> <span class="kt">Int</span> <span class="p">{</span>
+              <span class="k">guard</span> <span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="n">f</span> <span class="k">else</span> <span class="p">{</span> <span class="k">return</span> <span class="n">n</span> <span class="p">}</span>
+              <span class="k">return</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+              <span class="p">}</span>
+            </code></pre>
+            <p>Here, the function <code>f</code> is escaping because <code>((Int) -&gt; Int)?</code> is shorthand for <code>Optional&lt;(Int) -&gt; Int&gt;</code>, i.e. the function type is not in <em>immediate</em> parameter position. This is undesirable because there’s no reason <code>f</code> shouldn’t be non-escaping here.</p>
+
+            <h3 id="replace-optional-parameter-with-default-implementation">Replace optional parameter with default implementation</h3>
+
+            <p>The Swift team is <a href="https://bugs.swift.org/browse/SR-2444">aware of this limitation</a> and plans to fix it in a future release. Until then, it is important to be aware of it. There’s currently no way to force an optional closure to be non-escaping, but in many situations, you can probably avoid making the argument optional by providing a default value for the closure. In our example, the default value is the identity function, which simply returns the argument unchanged:</p>
+
+            <pre class="highlight swift"><code><span class="c1">/// Uses a default implementation for `f` if omitted</span>
+              <span class="kd">func</span> <span class="nf">transform</span><span class="p">(</span><span class="n">_</span> <span class="nv">n</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">with</span> <span class="nv">f</span><span class="p">:</span> <span class="p">(</span><span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span> <span class="o">=</span> <span class="p">{</span> <span class="nv">$0</span> <span class="p">})</span> <span class="o">-&gt;</span> <span class="kt">Int</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+                <span class="p">}</span>
+              </code></pre>
+              <h3 id="use-overloading-to-provide-an-optional-and-a-non-escaping-variant">Use overloading to provide an optional and a non-escaping variant</h3>
+
+              <p>If providing a default value is not possible, Michael Ilseman suggests to <a href="https://lists.swift.org/pipermail/swift-users/Week-of-Mon-20160912/003300.html">use overloading as a workaround</a> — you can write two variants of the function, one with an optional (escaping) function parameter and one with a non-optional, non-escaping parameter:</p>
+
+              <pre class="highlight swift"><code><span class="c1">// Overload 1: optional, escaping</span>
+                <span class="kd">func</span> <span class="nf">transform</span><span class="p">(</span><span class="n">_</span> <span class="nv">n</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">with</span> <span class="nv">f</span><span class="p">:</span> <span class="p">((</span><span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span><span class="p">)?)</span> <span class="o">-&gt;</span> <span class="kt">Int</span> <span class="p">{</span>
+                  <span class="nf">print</span><span class="p">(</span><span class="s">"Using optional overload"</span><span class="p">)</span>
+                  <span class="k">guard</span> <span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="n">f</span> <span class="k">else</span> <span class="p">{</span> <span class="k">return</span> <span class="n">n</span> <span class="p">}</span>
+                  <span class="k">return</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+                  <span class="p">}</span>
+
+                  <span class="c1">// Overload 2: non-optional, non-escaping</span>
+                  <span class="kd">func</span> <span class="nf">transform</span><span class="p">(</span><span class="n">_</span> <span class="nv">input</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">with</span> <span class="nv">f</span><span class="p">:</span> <span class="p">(</span><span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span> <span class="p">{</span>
+                    <span class="nf">print</span><span class="p">(</span><span class="s">"Using non-optional overload"</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="nf">f</span><span class="p">(</span><span class="n">input</span><span class="p">)</span>
+                    <span class="p">}</span>
+                  </code></pre>
+                  <p>I added some print statements to demonstrate which function gets called. Let’s test this with various arguments. Unsurprisingly, if you pass <code>nil</code>, the type checker selects the first overload because it’s the only one that’s compatible with the input:</p>
+
+                  <pre class="highlight swift"><code><span class="nf">transform</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="nv">with</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span> <span class="c1">// → 10</span>
+                    <span class="c1">// Using optional overload</span>
+                  </code></pre>
+                  <p>The same is true if you pass a variable that has an optional function type:</p>
+
+                  <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">f</span><span class="p">:</span> <span class="p">((</span><span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span><span class="p">)?</span> <span class="o">=</span> <span class="p">{</span> <span class="nv">$0</span> <span class="o">*</span> <span class="mi">2</span> <span class="p">}</span>
+                    <span class="nf">transform</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="nv">with</span><span class="p">:</span> <span class="n">f</span><span class="p">)</span> <span class="c1">// → 20</span>
+                    <span class="c1">// Using optional overload</span>
+                  </code></pre>
+                  <p>Even if the variable has a non-optional type, Swift will still select the first overload. This is because the function stored in the variable is automatically escaping and is therefore not compatible with the second overload, which expects a non-escaping argument:</p>
+                                    
+                  <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">g</span><span class="p">:</span> <span class="p">(</span><span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span> <span class="o">=</span> <span class="p">{</span> <span class="nv">$0</span> <span class="o">*</span> <span class="mi">2</span> <span class="p">}</span>
+                    <span class="nf">transform</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="nv">with</span><span class="p">:</span> <span class="n">g</span><span class="p">)</span> <span class="c1">// → 20</span>
+                    <span class="c1">// Using optional overload</span>
+                  </code></pre>
+                  <p>But things change when you pass a closure expression, i.e. a function literal in place. Now the second, non-escaping overload gets selected:</p>
+                                    
+                  <pre class="highlight swift"><code><span class="nf">transform</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="p">{</span> <span class="nv">$0</span> <span class="o">*</span> <span class="mi">2</span> <span class="p">}</span> <span class="c1">// → 20</span>
+                    <span class="c1">// Using non-optional overload</span>
+                  </code></pre>
+                  <p>Since it is very common to call higher-order functions with literal closure expressions, this lets you take the happy path (i.e. non-escaping, without having to think about reference cycles) in the majority of situations while still giving you the option to pass <code>nil</code>. If you decide to go this route, make sure to document why you need the two overloads.</p>
+                                    
+                  <h3 id="typealiases-are-always-escaping">Typealiases are always escaping</h3>
+                                    
+                  <p>One final thing to be aware of is that you can’t add escaping or non-escaping annotations to typealiases in Swift 3.0. And if you use a typealias for a function type in a function declaration, that parameter is always considered escaping. A fix for <a href="https://bugs.swift.org/browse/SR-2316">this bug</a> is already in master and should be part of the next release.</p>
+                                    
+                                    
+                </div>
+              </article>
+                                    
+              <div id="related-pages">
+                <div id="related-page-previous">
+                  <p class="related-page-heading">Previous</p>
+                  <p class="related-page-title"><a href="/blog/2016/10/advanced-swift-2/">Advanced Swift, Second Edition</a></p>
+                  <p class="related-page-excerpt">Today we’re releasing the second edition of our book Advanced Swift.</p>
+                  <p class="related-page-date"><time datetime="2016-10-06T16:12:43Z">October  6, 2016</time></p>
+                </div>
+                                    
+                <div id="related-page-next">
+                  <p class="related-page-heading">Next</p>
+                  <p class="related-page-title"><a href="/blog/2016/10/generic-range-algorithms/">Generic Range Algorithms</a></p>
+                  <p class="related-page-excerpt">Half-open and closed ranges are not easily convertible to each other. If you implement an algorithm that works on ranges, that usually means you have to provide two overloads. But sometimes, making your code more generic is the better solution.</p>
+                  <p class="related-page-date"><time datetime="2016-10-13T18:48:10Z">October 13, 2016</time></p>
+                </div>
+              </div>
+                                    
+              <div id="advanced-swift-promo">
+                <div id="advanced-swift-promo-text-container">
+                  <p class="advanced-swift-promo-text-essential"><strong>If you liked this article, I bet you’ll also like <a href="https://gumroad.com/a/507458675" title="Advanced Swift eBook">Advanced Swift</a></strong>, the book I wrote together with Chris Eidhof and Airspeed Velocity.</p>
+                  <p class="advanced-swift-promo-text-extra">The second edition, fully updated for Swift 3, is out now.</p>
+                  <p class="advanced-swift-promo-text-extra"><em>Advanced Swift</em> is available as <a href="https://gumroad.com/a/509555827/NcqF" title="Advanced Swift eBook">an e-book</a> and <a href="https://www.amazon.com/dp/1539154718/?tag=gdmfek-20" title="Advanced Swift Paperback">in print on Amazon</a> (<a href="https://www.amazon.com/dp/1539154718/?tag=gdmfek-20" title="Advanced Swift Paperback">.com</a>, <a href="https://www.amazon.co.uk/dp/1539154718/?tag=gdmfekgb-21" title="Advanced Swift Paperback">.co.uk</a>, <a href="https://www.amazon.de/dp/1539154718/?tag=gdmfek-21" title="Advanced Swift Paperback">.de</a>). The e-book download includes a version of the book for Swift Playgrounds on iPad.
+                  </p>
+                </div>
+                <div id="advanced-swift-promo-image-container">
+                  <a href="https://gumroad.com/a/509555827/NcqF" title="Advanced Swift eBook"><img src="/media/advanced-swift-2.0-cover-300px.png"></a>
+                </div>
+              </div>
+                                    
+            </main>
+                                    
+            <footer>
+              <div class="left">
+                <p><strong>Ole Begemann</strong></p>
+                <p>2009–2016</p>
+                <p>Made in Berlin.</p>
+              </div>
+              <div class="right">
+                <p><a href="/privacy-policy/">Privacy Policy</a></p>
+                <p><a href="/impressum/">Impressum</a></p>
+              </div>
+            </footer>
+          </body>
+          </html>
