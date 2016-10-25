@@ -1,6 +1,6 @@
 # Terpentin
 
-[![Version](https://img.shields.io/badge/version-0.0.1-green.svg)](https://github.com/bakkenbaeck/Terpentin/) [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bakkenbaeck/Terpentin/blob/master/LICENSE) [![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)](https://github.com/bakkenbaeck/Terpentin)
+[![Version](https://img.shields.io/badge/version-0.0.1-green.svg)](https://github.com/bakkenbaeck/Terpentin/tree/0.0.1) [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bakkenbaeck/Terpentin/blob/master/LICENSE) [![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)](https://github.com/bakkenbaeck/Terpentin)
 
 A Swift wrapper for Safari Reader JavaScript. Still very much a work in progress.
 
