@@ -40,6 +40,10 @@ open class Terpentin: NSObject {
         let request = URLRequest(url: url)
         self.webView.loadRequest(request)
     }
+
+    deinit {
+        self.webView.removeFromSuperview()
+    }
 }
 
 extension Terpentin: UIWebViewDelegate {
