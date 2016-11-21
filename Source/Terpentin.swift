@@ -64,7 +64,6 @@ extension Terpentin: UIWebViewDelegate {
 
         let title = context.evaluateScript("ReaderArticleFinderJS.articleTitle();").toString()
         let content = context.evaluateScript("ReaderArticleFinderJS.articleNode().outerHTML;").toString()
-        let plainText = context.evaluateScript("ReaderArticleFinderJS.articleTextContent();").toString()
 
         let article = ReadableArticle(title: title, content: content!, rawContent: self.html, isReaderModeAvailable: isReaderModeAvailable, nextPageURL: nextPageURL, isLTR: isLTR, isMediaWiki: isWiki, isWordpress: isWordpress)
 
